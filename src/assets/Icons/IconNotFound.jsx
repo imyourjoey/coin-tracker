@@ -4,7 +4,7 @@ function IconNotFound(props) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         data-name="Layer 1"
-        width={props.width || "860.13137"} // Dynamically setting width from props
+        width={props.width || "860.13137"}
         height={props.height || "571.14799"}
         viewBox="0 0 860.13137 571.14799"
         xmlns:xlink="http://www.w3.org/1999/xlink"

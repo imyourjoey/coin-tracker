@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Skeleton } from "@mui/material";
 import {
   LineChart,
   Line,
@@ -12,6 +12,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Groq from "groq-sdk";
+import IconLoading from "../../assets/Icons/IconLoading";
+import IconSomethingWentWrong from "@/assets/Icons/IconSomethingWentWrong.jsx";
 
 // Custom tooltip for the line chart
 const CustomTooltip = ({ active, payload }) => {
@@ -123,14 +125,23 @@ function LandingPage() {
   };
 
   if (loading) {
-    return <Typography variant="h6">Loading...</Typography>;
+    return (
+      <div className="centered-container">
+        <div className="w-full flex flex-col items-center mt-20 animate-pulse">
+          <IconLoading width="300" height="350" />
+          <div className="text-3xl animate-pulse ">Loading...</div>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
     return (
-      <Typography variant="h6" color="error">
-        {error}
-      </Typography>
+      <div className="centered-container">
+        <div className="w-full flex flex-col items-center mt-20 animate-pulse">
+          <IconSomethingWentWrong width="300" height="350" />
+        </div>
+      </div>
     );
   }
 
@@ -138,13 +149,22 @@ function LandingPage() {
     <>
       <div className="centered-container">
         <div className="text-3xl font-semibold mb-2 md:mt-20">
-          Bitcoin Market Overview
+          <span className="text-[#77c322] text-3xl font-semibold">BitView</span>{" "}
+          - Bitcoin Market Overview
         </div>
-        <div className="flex flex-col md:flex-row  md:space-x-5 ">
-          <Stack spacing={0} className="md:w-1/2 md:card">
+        <div className="flex flex-col md:flex-row  md:space-x-5">
+          <Stack spacing={0} className="md:w-1/2 md:card md:shadow-md">
             <div className="text-2xl font-semibold">Prices - Year-to-Date</div>
             <div className="text-end text-sm mt-2 text-gray-500">
-              Powered by CoinGecko API
+              Powered by{" "}
+              <a
+                href="https://www.coingecko.com/en/api"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 underline hover:text-[#77c322]"
+              >
+                CoinGecko API
+              </a>
             </div>
 
             {/* Line Chart for Bitcoin Prices */}
@@ -176,10 +196,21 @@ function LandingPage() {
           </Stack>
 
           {/* Right card for Groq AI functionality */}
-          <Stack spacing={0} className="md:w-1/2 md:card mt-5 md:mt-0">
+          <Stack
+            spacing={0}
+            className="md:w-1/2 md:card mt-5 md:mt-0  md:shadow-md "
+          >
             <div className="text-2xl font-semibold ">AI Price Predictions</div>
             <div className="text-end text-sm mt-2 text-gray-500">
-              Powered by Groq AI
+              Powered by{" "}
+              <a
+                href="https://console.groq.com/docs/quickstart"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 underline hover:text-[#77c322]"
+              >
+                Groq AI
+              </a>
             </div>
             <div className="card min-h-[200px] max-h-[300px] overflow-y-auto">
               <p className="text-justify">{response}</p>

@@ -1,0 +1,10 @@
+@import "./base.css";
+@import "./tailwind.css";
+
+/* ::-webkit-scrollbar {
+  width: 0.575rem !important;
+} */
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}

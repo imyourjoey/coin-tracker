@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .title-3xl {
+    @apply font-poppinsBold text-3xl text-primary-black;
+  }
+
+  .card {
+    @apply p-4 bg-white border border-gray-200 rounded-lg shadow;
+  }
+
+  .btn {
+    @apply font-medium rounded-lg focus:outline-none inline-flex items-center justify-center;
+  }
+
+  .btn-primary {
+    @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 border border-blue-700 hover:border-blue-800 focus:border-blue-300;
+  }
+
+  .btn-mulah {
+    @apply text-white bg-mulah-red hover:bg-mulah-red border border-mulah-red hover:border-mulah-red;
+  }
+
+  .btn-outline {
+    @apply text-icon-grey border border-icon-grey hover:bg-icon-grey hover:text-white;
+  }
+
+  .btn-outline-primary {
+    @apply text-mulah-red border border-[#D8DADC] hover:bg-mulah-red hover:text-white focus:ring-mulah-red;
+  }
+
+  .btn-outline-mulah {
+    @apply text-mulah-red border border-mulah-red hover:bg-mulah-red hover:text-white focus:ring-mulah-red;
+  }
+
+  .btn-outline-secondary {
+    @apply text-black border border-[#D8DADC] hover:bg-icon-grey hover:text-white focus:ring-[#D8DADC];
+  }
+
+  .btn-outline-tertiary {
+    @apply text-icon-grey border border-icon-grey hover:bg-icon-grey hover:text-white focus:ring-icon-grey;
+  }
+
+  .custom-date-picker {
+    @apply border border-gray-300 text-gray-900 text-sm rounded-xl w-full p-3 active:border-blue-600 active:ring-0 ring-offset-0 !important;
+  }
+}

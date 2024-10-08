@@ -1,9 +1,10 @@
-import "@/assets/css/centered.css";
+import Button from "@mui/material/Button";
 
 function LandingPage() {
   return (
     <>
-      <div> Hello world</div>
+      <div className="centered-container"> Hello world</div>
+      <Button variant="contained">Contained</Button>
     </>
   );
 }

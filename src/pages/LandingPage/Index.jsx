@@ -161,7 +161,7 @@ function LandingPage() {
     <>
       <div className="centered-container">
         <div className="text-3xl font-semibold mb-2 md:mt-20">
-          <span className="text-[#77c322] text-3xl font-semibold">BitView</span>{" "}
+          <span className="text-[#77c322] text-3xl font-semibold">BitView</span>
           - Bitcoin Market Overview
         </div>
         <div className="flex flex-col md:flex-row  md:space-x-5">

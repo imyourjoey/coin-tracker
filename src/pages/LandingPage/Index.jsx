@@ -111,12 +111,24 @@ function LandingPage() {
   // Function to handle AI prompt submission
   const handleAIRequest = async () => {
     try {
+      const endDate = Math.floor(Date.now() / 1000);
+      const startDate = endDate - 365 * 24 * 60 * 60;
+
+      const startDateString = new Date(startDate * 1000).toISOString();
+      const endDateString = new Date(endDate * 1000).toISOString();
       const dataToPrepend = JSON.stringify(prices);
-      const combinedInput = `${dataToPrepend}\n. The JSON string is the Bitcoin prices the past year. Tell me predictions of Bitcoin prices moving forward write in a 100 word paragraph. Make it straight to the point, don't add preface`;
+      const combinedInput = `${dataToPrepend}\n. Data before this sentence are bitcoin prices from ${startDateString} to ${endDateString}, Analyse the data very very carefully. you must provide specific price predictions for Bitcoin moving forward. Write a straightforward, 100-word paragraph with actual price estimates, no preface or unnecessary details.`;
 
       const chatCompletion = await client.chat.completions.create({
-        messages: [{ role: "user", content: combinedInput }],
-        model: "llama3-8b-8192",
+        messages: [
+          // {
+          //   role: "system",
+          //   content:
+          //     "You are a bitcoin expert and technical analyst, please analyse carefully and you must answer the question stated.",
+          // },
+          { role: "user", content: combinedInput },
+        ],
+        model: "mixtral-8x7b-32768",
       });
       setResponse(chatCompletion.choices[0].message.content);
     } catch (err) {
@@ -127,7 +139,7 @@ function LandingPage() {
   if (loading) {
     return (
       <div className="centered-container">
-        <div className="w-full flex flex-col items-center mt-20 animate-pulse">
+        <div className="w-full flex flex-col items-center mt-20">
           <IconLoading width="300" height="350" />
           <div className="text-3xl animate-pulse ">Loading...</div>
         </div>
@@ -153,8 +165,13 @@ function LandingPage() {
           - Bitcoin Market Overview
         </div>
         <div className="flex flex-col md:flex-row  md:space-x-5">
-          <Stack spacing={0} className="md:w-1/2 md:card md:shadow-md">
-            <div className="text-2xl font-semibold">Prices - Year-to-Date</div>
+          <Stack
+            spacing={0}
+            className="md:w-1/2 md:card md:shadow-md mt-8 md:mt-0"
+          >
+            <div className="text-2xl font-semibold">
+              Prices - Last 12 Months
+            </div>
             <div className="text-end text-sm mt-2 text-gray-500">
               Powered by{" "}
               <a
@@ -198,7 +215,7 @@ function LandingPage() {
           {/* Right card for Groq AI functionality */}
           <Stack
             spacing={0}
-            className="md:w-1/2 md:card mt-5 md:mt-0  md:shadow-md "
+            className="md:w-1/2 md:card mt-8 md:mt-0  md:shadow-md "
           >
             <div className="text-2xl font-semibold ">AI Price Predictions</div>
             <div className="text-end text-sm mt-2 text-gray-500">
